@@ -1,4 +1,4 @@
-package com.gabrielbastos.apipessoas.entity;
+package com.gabrielbastos.apipessoas.dto.request;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,6 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.br.CPF;
+
+import com.gabrielbastos.apipessoas.entity.Pessoa;
+import com.gabrielbastos.apipessoas.entity.Telefone;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,31 +28,33 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Pessoa {
+public class PessoaDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(nullable = false)
+
+	@NotEmpty
+	@Size(min = 2, max = 100)
 	private String nome;
-	
-	@Column(nullable = false)
+
+	@NotEmpty
+	@Size(min = 2, max = 100)
 	private String sobrenome;
-	
-	@Column(nullable = false, unique = true)
+
+	@NotEmpty
+	@CPF
 	private String cpf;
-	
-	@Column
-	private LocalDate birthDate;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-	private List<Telefone> telefones;
+
+	@NotNull
+	private String birthDate;
+
+	@Valid
+	@NotEmpty
+	private List<TelefoneDTO> telefones;
+
 }
