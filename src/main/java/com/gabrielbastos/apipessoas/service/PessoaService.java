@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gabrielbastos.apipessoas.dto.MessageResponseDTO;
 import com.gabrielbastos.apipessoas.dto.request.PessoaDTO;
 import com.gabrielbastos.apipessoas.entity.Pessoa;
-import com.gabrielbastos.apipessoas.mapper.PessoaMapper;
+import com.gabrielbastos.apipessoas.dto.mapper.PessoaMapper;
 import com.gabrielbastos.apipessoas.repository.PessoaRepository;
 
 @Service
