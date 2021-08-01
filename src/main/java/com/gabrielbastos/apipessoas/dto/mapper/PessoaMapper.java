@@ -1,4 +1,4 @@
-package com.gabrielbastos.apipessoas.mapper;
+package com.gabrielbastos.apipessoas.dto.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,7 +12,7 @@ public interface PessoaMapper {
 	
 	PessoaMapper INSTANCE = Mappers.getMapper(PessoaMapper.class);
 	
-	@Mapping(target = "birthDate", source = "birthDate", dateFormat = "dd-MM-yyy")
+    @Mapping(target = "birthDate", source = "birthDate", dateFormat = "dd-MM-yyyy")
 	Pessoa toModel(PessoaDTO pessoaDTO);
 	
 	PessoaDTO toPessoa(Pessoa pessoa);
