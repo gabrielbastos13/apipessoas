@@ -6,9 +6,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,5 +48,17 @@ public class PessoasController {
 	@GetMapping("/{id}")
 	public PessoaDTO listarPorID(@PathVariable Long id) {
 		return pessoaService.findById(id);
+	}
+	
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deletarPorId(@PathVariable Long id) {
+		pessoaService.delete(id);
+	}
+	
+	@PutMapping("/{id}")
+	public MessageResponseDTO atualizarPessoaPorId(@PathVariable Long id, @RequestBody @Valid PessoaDTO pessoaDTO) { 
+		return pessoaService.updateByID(id, pessoaDTO);
+	
 	}
 }
